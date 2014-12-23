@@ -27,7 +27,7 @@ object ForkInfo extends App {
   val repo = "dartemis"
 
   val info = for {
-    fork <- githubForks(user, repo)
+    fork <- user::githubForks(user, repo)
     commits = githubCommitCount(fork, repo)
     stars = githubStarCount(fork, repo)
   } yield ForkInfo(fork, commits, stars)
