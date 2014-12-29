@@ -39,11 +39,12 @@ void update(num n) {
 	canvas.width = canadaImg.width;
 	canvas.height = canadaImg.height;
 
-	canvasCtx.drawImage(canadaImg, 0, 0);
-	canvasCtx.translate(headOffsetX + headImg.width, headOffsetY + headImg.height);
-	canvasCtx.rotate(degrees * PI / 180);
-	canvasCtx.drawImage(headImg, -headImg.width, -headImg.height);
-	canvasCtx.restore();
+	canvasCtx
+			..drawImage(canadaImg, 0, 0)
+			..translate(headOffsetX + headImg.width, headOffsetY + headImg.height)
+			..rotate(degrees * PI / 180)
+			..drawImage(headImg, -headImg.width, -headImg.height)
+			..restore();
 
 	window.animationFrame.then(update);
 }
