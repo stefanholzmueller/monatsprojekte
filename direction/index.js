@@ -4,18 +4,15 @@ module.controller("directionCtrl", function ($scope) {
     $scope.$on('mapInitialized', function (event, map) {
         console.log("mapInitialized");
 
-    });
-
-    function getPosition() {
         navigator.geolocation.getCurrentPosition(function (position) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
-            var center = [latitude, longitude];
-            console.log("center=" + center);
-            return center;
+            var path = [new google.maps.LatLng(latitude, longitude), new google.maps.LatLng(118.291, 153.027)];
+
+            map.shapes.directionArrow.setPath(path);
         }, function (error) {
             alert(error);
-        });
-    }
+        }, {timeout: 10000});
+    });
 
 });
