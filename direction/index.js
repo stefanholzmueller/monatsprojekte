@@ -1,18 +1,20 @@
 var module = angular.module("direction", ['ngMap']);
 
-module.controller("directionCtrl", function ($scope) {
+module.controller("directionCtrl", function ($scope, $timeout) {
     $scope.$on('mapInitialized', function (event, map) {
-        console.log("mapInitialized");
+        navigator.geolocation.watchPosition(function (position) {
 
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-            var path = [new google.maps.LatLng(latitude, longitude), new google.maps.LatLng(118.291, 153.027)];
+            var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(currentPosition)
+            map.markers.arrow.position = currentPosition;
 
-            map.shapes.directionArrow.setPath(path);
+            if (position.coords.heading) {
+                map.markers.arrow.icon.rotation = position.coords.heading;
+            }
+
         }, function (error) {
             alert(error);
-        }, {timeout: 10000});
+        }, {timeout: 5000});
     });
 
 });
