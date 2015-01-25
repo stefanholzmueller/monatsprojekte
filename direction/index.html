@@ -16,17 +16,15 @@
 </head>
 <body data-ng-app="direction" data-ng-controller="directionCtrl">
 
-<map zoom="5"
+<map zoom="15"
      center="current-location"
      disable-default-u-i="true"
      disable-double-click-zoom="true">
-    <shape name="polyline" id="directionArrow" icons="[{
-          icon: {
-            path: 'FORWARD_CLOSED_ARROW'
-          },
-          offset: '100%'
-        }]">
-    </shape>
+    <marker id="directionArrow" position="current-location" icon="{
+        path: 'FORWARD_CLOSED_ARROW',
+        scale: 7,
+        rotation: 251
+      }" dragglele="true"></marker>
 </map>
 
 </body>
