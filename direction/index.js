@@ -9,7 +9,7 @@ module.controller("directionCtrl", function ($scope, $timeout) {
             map.markers.arrow.setPosition(currentPosition);
 
             if (position.coords.heading) {
-                map.markers.arrow.icon.rotation = 45;
+                map.markers.arrow.icon.rotation = position.coords.heading;
                 map.markers.arrow.setIcon(map.markers.arrow.icon);
             }
 
